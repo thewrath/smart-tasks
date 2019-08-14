@@ -1,16 +1,35 @@
 {
   "name": "smart-tasks",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.5.0",
+  "description": "smart-tasks is a task manager for NodeJS which can be configured with a configuration file. The base code comes from the following project : (https://github.com/arkerone/smart-container)",
   "main": "./lib/SchedulerBuilder.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "thewrath",
   "license": "MIT",
   "dependencies": {
     "clone": "^2.1.2",
     "path": "^0.12.7",
     "smart-container": "0.2.1"
-  }
+  },
+  "devDependencies": {
+    "eslint": "^3.12.1",
+    "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.1.0"
+  },
+  "keywords": [
+    "task",
+    "manager",
+    "service",
+    "service container",
+    "task manager"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thewrath/smart-tasks"
+  },
+  "homepage": "https://github.com/thewrath/smart-tasks"
 }
