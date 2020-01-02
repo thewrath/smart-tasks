@@ -20,6 +20,7 @@ $ npm install --save smart-tasks
  * Launch non-periodic tasks
  * Remove useless part come from smart-container
  * Move to TypeScript 
+ * Surround task execution by try-catch to prevent undefined function error
 
 ## 🤖 Usage
 
