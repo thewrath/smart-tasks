@@ -1,14 +1,14 @@
-# smart-tasks
+# 🕑 smart-tasks
 
   smart-tasks is a task manager for NodeJS which can be configured with a configuration file.
   The base code comes from the following project : (https://github.com/arkerone/smart-container)
 
-## Installation
+## 🏗️ Installation
 ```
 $ npm install --save smart-tasks
 ```
 
-## Features
+## ✔️ Features
 
   * Define classes or literal objects to task manager,
   * Define properties to task,
@@ -16,12 +16,12 @@ $ npm install --save smart-tasks
   * Setting up tasks with a configuration file,
   * Launch periodic tasks  
 
-## TODO
+## ⚙️ TODO
  * Launch non-periodic tasks
  * Remove useless part come from smart-container
  * Move to TypeScript 
 
-## Usage
+## 🤖 Usage
 
 ### Create and use the container without configuration file
 
