@@ -19,6 +19,7 @@ $ npm install --save smart-tasks
 ## TODO
  * Launch non-periodic tasks
  * Remove useless part come from smart-container
+ * Move to TypeScript 
 
 ## Usage
 
