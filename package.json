@@ -1,6 +1,6 @@
 {
   "name": "smart-tasks",
-  "version": "0.5.4",
+  "version": "0.5.5",
   "description": "smart-tasks is a task manager for NodeJS which can be configured with a configuration file. The base code comes from the following project : (https://github.com/arkerone/smart-container)",
   "main": "./lib/SchedulerBuilder.js",
   "scripts": {
