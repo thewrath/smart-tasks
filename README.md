@@ -17,14 +17,15 @@ $ npm install --save smart-tasks
   * Launch periodic tasks  
 
 ## ⚙️ TODO
- * Launch non-periodic tasks
+ * One shot date based task (non-periodic)
+ * Launch date based tasks (periodic)
  * Remove useless part come from smart-container
  * Move to TypeScript 
- * Surround task execution by try-catch to prevent undefined function error
+ * Surround task execution by try-catch to prevent undefined function error 
 
 ## 🤖 Usage
 
-### Create and use the container without configuration file
+### Create and use the task scheduler without configuration file
 
 #### Create new smart-tasks scheduler
 ```js
@@ -38,9 +39,10 @@ const scheduler = schedulerBuilder.create();
 
 #### Create and register a new task
 ```js
-/* Create a service class */
+/* Create a task class */
 class Hello {
-  constructor() {
+  constructor(container) {
+    this.container = container; // smart-container service container for DI
     this.msg = 'Hello world!';
   }
 
@@ -48,43 +50,54 @@ class Hello {
     console.log(this.msg);
   }
 }
+/* Be careful to export your class !*/
+module.exports = Hello;
 
-/* Register the service */
+/* Register the task */
 scheduler.register('hello', Hello);
 ```
 
 ### The configuration file
-Here is a template of a service configuration file (the file can be a JSON or a JS file) :
+Here is a template of a task configuration file `tasks.js`:
 
 ```js
 "use strict";
 import path from "path";
 
 module.exports = {
-    properties: {
-        message: 'This message was transformed in uppercase'
-    },
     tasks: {
         presence_check: {
             path: path.join(__dirname, '../tasks/PresenceCheckTask.js'),
-            frequency: 30 //every 30 s 
+            frequency: 30 // frequency depend on the loop timeout
         },
         fetch_order: {
             path: path.join(__dirname, '../tasks/FetchOrderTask.js'),
-            frequency: 30 //every 30 s  
+            frequency: 30 // frequency depend on the loop timeout 
         }
     }
 };
 ```
 ##### process.env support
-If you use a js configuration file instead of a JSON configuration file, you can use the environment variables:
+If you use a js configuration file , you can use the environment variables:
 ```js
 {
   properties: {
     host: process.env.DB_HOST,
     username: process.env.DB_USER,
     password: process.env.DB_PASS
-  }
+  },
+
+  tasks: {
+        presence_check: {
+            path: path.join(__dirname, '../tasks/PresenceCheckTask.js'),
+            frequency: 30, // frequency depend on the loop timeout
+            constructorArgs: ['%host%', '%username%']
+        },
+        fetch_order: {
+            path: path.join(__dirname, '../tasks/FetchOrderTask.js'),
+            frequency: 30 // frequency depend on the loop timeout 
+        }
+    }
 }
 ```
 #### The task
@@ -111,5 +124,11 @@ you can specify the arguments of the task `constructor` :
   }
 }
 ```
+### Dependency injection
 
-You can, like the arguments of the `constuctor`, make a reference to a property or a service.
+You can use smart-container container to inject services inside task
+```js
+this.servicesContainer = ContainerBuilder.build(__dirname, 'config/services.js');
+// Init task scheduler with config file
+this.tasksScheduler = SchedulerBuilder.build(__dirname, 'config/tasks.js', this.servicesContainer);
+```
