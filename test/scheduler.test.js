@@ -21,7 +21,7 @@ test('Manual scheduler task not found error', () => {
     let taskName = 'none';
     expect(() => {
         scheduler.get(taskName);
-    }).toThrowError(`No task available for name "${taskName}"`);
+    }).toThrowError(`No task "${taskName}" available`);
 });
 
 test('Configuration js file scheduler creation', () => {
@@ -34,7 +34,7 @@ test('Configuration js file scheduler creation', () => {
 test('Configuration json file scheduler creation not found error', () => {
     //with wrong file 
     expect(() => {
-       SchedulerBuilder.build(__dirname, './tasks-configuration.js'); 
+       SchedulerBuilder.build(__dirname, './not_found_configuration.js'); 
     }).toThrowError("Configuration file not found");
 });
 
@@ -59,4 +59,19 @@ test('Scheduler timer', () => {
     scheduler.run(1);
     jest.runOnlyPendingTimers();
     expect(schedulerIntervalFake).toBeCalled();
+});
+
+test('Single run task', () => {
+    let scheduler = SchedulerBuilder.create();
+    let task = new TestTask(schedulerIntervalFake);
+    let taskName = "test_task";
+    task.frequency = 1;
+    task.singleRun = true;
+    scheduler.register(taskName, task);
+    expect(scheduler.get(taskName)).toBeInstanceOf(TestTask);
+    expect(scheduler.getTasks()[taskName]).toBeInstanceOf(TestTask);
+    scheduler.run(1);
+    jest.runOnlyPendingTimers();
+    expect(schedulerIntervalFake).toBeCalled();
+    expect(scheduler.getTasks()[taskName]).toBeUndefined();
 });

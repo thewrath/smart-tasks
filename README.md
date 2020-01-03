@@ -8,20 +8,28 @@
 $ npm install --save smart-tasks
 ```
 
-## ✔️ Features
+## 🃏 Test
 
+Test are write in `test` folder with the jest framework from Facebook
+
+```
+$ npm test
+```
+
+## ✔️ Features
   * Define classes or literal objects to task manager,
   * Define properties to task,
   * Inject container (from smart-container) in task,
   * Setting up tasks with a configuration file,
-  * Launch periodic tasks  
+  * Launch periodic tasks  (define with frequency)
+  * One shot frequency based task (non-periodic)
 
 ## ⚙️ TODO
- * One shot date based task (non-periodic)
- * Launch date based tasks (periodic)
- * Remove useless part come from smart-container
- * Move to TypeScript 
- * Surround task execution by try-catch to prevent undefined function error 
+  * One shot time based task (non-periodic)
+  * Launch time based tasks (periodic)
+  * Remove useless part come from smart-container
+  * Move to TypeScript 
+  * Surround task execution by try-catch to prevent undefined function error 
 
 ## 🤖 Usage
 
