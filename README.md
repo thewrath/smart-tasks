@@ -1,4 +1,4 @@
-# 🕑 smart-tasks
+# 🕑 Smart-tasks
 
   smart-tasks is a task manager for NodeJS which can be configured with a configuration file.
   The base code comes from the following project : (https://github.com/arkerone/smart-container)
