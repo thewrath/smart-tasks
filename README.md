@@ -22,10 +22,10 @@ $ npm test
   * Inject container (from smart-container) in task,
   * Setting up tasks with a configuration file,
   * Launch periodic tasks  (define with frequency)
-  * One shot frequency based task (non-periodic)
+  * single run frequency based task (non-periodic)
 
 ## ⚙️ TODO
-  * One shot time based task (non-periodic)
+  * single run time based task (non-periodic)
   * Launch time based tasks (periodic)
   * Remove useless part come from smart-container
   * Move to TypeScript 
