@@ -65,6 +65,12 @@ module.exports = Hello;
 scheduler.register('hello', Hello);
 ```
 
+#### Build tasks and run the scheduler
+```js
+scheduler.buildAllTasks();
+scheduler.run(1000, null);
+```
+
 ### The configuration file
 Here is a template of a task configuration file `tasks.js`:
 
