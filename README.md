@@ -48,13 +48,13 @@ const scheduler = schedulerBuilder.create();
 #### Create and register a new task
 ```js
 /* Create a task class */
-class Hello {
+class Hello extends Task {
   constructor(container) {
-    this.container = container; // smart-container service container for DI
+    super(container, 10); // smart-container service container for DI 
     this.msg = 'Hello world!';
   }
 
-  sayHello() {
+  run() {
     console.log(this.msg);
   }
 }
