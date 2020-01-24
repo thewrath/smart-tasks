@@ -10,7 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "clone": "^2.1.2",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "smart-container": "^0.2.1"
   },
   "devDependencies": {
     "eslint": "^4.18.2",
@@ -18,8 +19,7 @@
     "eslint-plugin-import": "^2.3.0",
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-react": "^7.1.0",
-    "jest": "^24.9.0",
-    "smart-container": "^0.2.1"
+    "jest": "^24.9.0"
   },
   "keywords": [
     "task",
