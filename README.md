@@ -30,6 +30,8 @@ $ npm test
   * Remove useless part come from smart-container
   * Move to TypeScript 
   * Surround task execution by try-catch to prevent undefined function error 
+  * Add an ID to task (for serialization ...)
+  * Add node-storage integration to store task on disk and restore it
 
 ## 🤖 Usage
 
