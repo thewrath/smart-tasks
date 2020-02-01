@@ -41,14 +41,15 @@ $ npm test
 
 ### Create and use the task scheduler without configuration file
 
-#### Create new smart-tasks scheduler
+#### Require  smart-tasks taskContainer and Scheduler 
+
 ```js
-const schedulerBuilder = require('smart-tasks');
+const st = require('smart-tasks');
 ```
 
-#### Create the scheduler
+#### Create taskContainer
 ```js
-const scheduler = schedulerBuilder.create();
+const taskContainer = st.TaskContainerBuilder.create();
 ```
 
 #### Create and register a new task
@@ -68,12 +69,13 @@ class Hello extends Task {
 module.exports = Hello;
 
 /* Register the task */
-scheduler.register('hello', Hello);
+taskContainer.register('hello', Hello);
 ```
 
-#### Build tasks and run the scheduler
+#### Create task scheduler
 ```js
-scheduler.buildAllTasks();
+const scheduler = st.Scheduler(taskContainer);
+scheduler.init();
 scheduler.run(1000, null);
 ```
 
@@ -98,7 +100,7 @@ module.exports = {
 };
 ```
 ##### process.env support
-If you use a js configuration file , you can use the environment variables:
+You can use the environment variables:
 ```js
 {
   properties: {
@@ -149,6 +151,6 @@ you can specify the arguments of the task `constructor` :
 You can use smart-container container to inject services inside task
 ```js
 this.servicesContainer = ContainerBuilder.build(__dirname, 'config/services.js');
-// Init task scheduler with config file
-this.tasksScheduler = SchedulerBuilder.build(__dirname, 'config/tasks.js', this.servicesContainer);
+// Init task container with config file
+this.taskContainer = TaskContainerBuilder.build(__dirname, 'config/tasks.js', this.servicesContainer);
 ```
