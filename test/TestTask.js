@@ -6,7 +6,7 @@ class TestTask extends Task {
         this.cb = cb;
     }
     
-    run() {
+    async run() {
         if(typeof this.cb === "function"){
             this.cb();
         }
