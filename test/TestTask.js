@@ -1,4 +1,4 @@
-const Task = require('../lib/Task');
+const Task = require('../lib/index').Task;
 
 class TestTask extends Task {
     constructor(cb){
