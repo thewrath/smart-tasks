@@ -1,4 +1,6 @@
-# 🕑 Smart-tasks
+![alt text](https://github.com/thewrath/smart-tasks/blob/master/bin/logo.png | width=50)
+
+# Smart-tasks
 
   smart-tasks is a very simple task manager (container and scheduler) for NodeJS which can be configured with a configuration file.
   The base code comes from the following project : (https://github.com/arkerone/smart-container)
