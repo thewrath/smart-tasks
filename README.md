@@ -34,6 +34,7 @@ $ npm test
   * Add node-storage integration to store task on disk and restore it
 ## 🤔 TO THINK ABOUT
   * Turn task into promise based object and relaunch it only if the previous one is resolve.
+  * Separate task scheduler and task container part
 
 ## 🤖 Usage
 
