@@ -25,18 +25,17 @@ $ npm test
   * single run frequency based task (non-periodic)
 
 ## ⚙️ TODO
-  * Separate task scheduler and task container part
   * single run time based task (non-periodic)
   * Launch time based tasks (periodic)
-  * Remove useless part come from smart-container
   * Move to TypeScript 
   * Surround task execution by try-catch to prevent undefined function error 
   * Add an ID to task (for serialization ...)
-  * Add node-storage integration to store task on disk and restore it
+  * Add Storage integration to store task on disk and restore it
   
 
 ## 🤔 TO THINK ABOUT
   * Turn task into promise based object and relaunch it only if the previous one is resolve.
+  * Single run task management (remove it from task container or scheduler task history ?)
 
 ## 🤖 Usage
 

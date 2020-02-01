@@ -1,47 +1,48 @@
-const SchedulerBuilder = require('../lib/SchedulerBuilder.js');
+const TaskContainerBuilder = require('../lib/TaskContainerBuilder.js');
+const Scheduler = require('../lib/Scheduler.js');
 const ContainerBuilder = require('smart-container');
 const TestTask = require('./TestTask.js');
 
-test('Manual scheduler task creation', () => {
-    let scheduler = SchedulerBuilder.create();
+test('Manual taskContainer creation', () => {
+    let taskContainer = TaskContainerBuilder.create();
     let taskName = 'test_task';
-    scheduler.register(taskName, TestTask);
-    expect(scheduler.get(taskName)).toBeInstanceOf(TestTask);
+    taskContainer.register(taskName, TestTask);
+    expect(taskContainer.get(taskName)).toBeInstanceOf(TestTask);
 });
 
-test('Manual scheduler with container', () => {
-    let scheduler = SchedulerBuilder.create();
+test('Manual taskContainer with service container', () => {
+    let taskContainer = TaskContainerBuilder.create();
     let servicesContainer = ContainerBuilder.create();
-    scheduler.setContainer(servicesContainer);
-    expect(scheduler.getContainer()).toBe(servicesContainer);
+    taskContainer.setContainer(servicesContainer);
+    expect(taskContainer.getContainer()).toBe(servicesContainer);
 });
 
-test('Manual scheduler task not found error', () => {
-    let scheduler = SchedulerBuilder.create();
+test('Manual taskContainer task not found error', () => {
+    let taskContainer = TaskContainerBuilder.create();
     let taskName = 'none';
     expect(() => {
-        scheduler.get(taskName);
+        taskContainer.get(taskName);
     }).toThrowError(`No task "${taskName}" available`);
 });
 
-test('Configuration js file scheduler creation', () => {
-    let scheduler = SchedulerBuilder.build(__dirname, './tasks-configurations.js');
+test('Configuration js file taskContainer creation', () => {
+    let taskContainer = TaskContainerBuilder.build(__dirname, './tasks-configurations.js');
     let taskName = "test_task";
-    expect(scheduler.get(taskName)).toBeInstanceOf(TestTask)
+    expect(taskContainer.get(taskName)).toBeInstanceOf(TestTask)
 
 });
 
-test('Configuration json file scheduler creation not found error', () => {
+test('Configuration json file taskContainer creation not found error', () => {
     //with wrong file 
     expect(() => {
-       SchedulerBuilder.build(__dirname, './not_found_configuration.js'); 
+       TaskContainerBuilder.build(__dirname, './not_found_configuration.js'); 
     }).toThrowError("Configuration file not found");
 });
 
-test('Configuration file scheduler creation with container', () => {
+test('Configuration file taskContainer creation with services container', () => {
     let servicesContainer = ContainerBuilder.create();
-    let scheduler = SchedulerBuilder.build(__dirname, './tasks-configurations.js', servicesContainer);
-    expect(scheduler.getContainer()).toBe(servicesContainer);
+    let taskContainer = TaskContainerBuilder.build(__dirname, './tasks-configurations.js', servicesContainer);
+    expect(taskContainer.getContainer()).toBe(servicesContainer);
 });
 
 jest.useFakeTimers();
@@ -49,29 +50,37 @@ let schedulerIntervalFake = jest.fn().mockImplementation(() => {
     return true;
 });
 
-test('Scheduler timer', () => {
-    let scheduler = SchedulerBuilder.create();
+test('Scheduler run loop', () => {
+    let taskContainer = TaskContainerBuilder.create();
     let task = new TestTask(schedulerIntervalFake);
     let taskName = "test_task";
     task.frequency = 1; 
-    scheduler.register(taskName, task);
-    expect(scheduler.get(taskName)).toBeInstanceOf(TestTask);
+    taskContainer.register(taskName, task);
+    expect(taskContainer.get(taskName)).toBeInstanceOf(TestTask);
+    
+    let scheduler = new Scheduler(taskContainer);
+    scheduler.init();
     scheduler.run(1);
     jest.runOnlyPendingTimers();
     expect(schedulerIntervalFake).toBeCalled();
 });
 
 test('Single run task', () => {
-    let scheduler = SchedulerBuilder.create();
+    let taskContainer = TaskContainerBuilder.create();
     let task = new TestTask(schedulerIntervalFake);
     let taskName = "test_task";
     task.frequency = 1;
     task.singleRun = true;
-    scheduler.register(taskName, task);
-    expect(scheduler.get(taskName)).toBeInstanceOf(TestTask);
-    expect(scheduler.getTasks()[taskName]).toBeInstanceOf(TestTask);
+    taskContainer.register(taskName, task);
+    expect(taskContainer.get(taskName)).toBeInstanceOf(TestTask);
+    expect(taskContainer.getTasks()[taskName]).toBeInstanceOf(TestTask);
+    
+    
+    let scheduler = new Scheduler(taskContainer);
+    scheduler.init();
     scheduler.run(1);
     jest.runOnlyPendingTimers();
     expect(schedulerIntervalFake).toBeCalled();
-    expect(scheduler.getTasks()[taskName]).toBeUndefined();
+
+    expect(taskContainer.getTasks()[taskName]).toBeUndefined();
 });
