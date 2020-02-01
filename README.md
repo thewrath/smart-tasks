@@ -1,4 +1,4 @@
-![alt text](https://github.com/thewrath/smart-tasks/blob/master/bin/logo.png | width=50)
+![alt text](https://github.com/thewrath/smart-tasks/blob/master/bin/logo.png)
 
 # Smart-tasks
 
