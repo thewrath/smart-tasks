@@ -29,11 +29,9 @@ $ npm test
 ## ⚙️ TODO
   * single run time based task (non-periodic)
   * Launch time based tasks (periodic)
-  * Move to TypeScript 
-  * Surround task execution by try-catch to prevent undefined function error 
+  * Move to TypeScript  
   * Add an ID to task (for serialization ...)
   * Add Storage integration to store task on disk and restore it
-  * better error management (class based on Error) and reporting
   
 
 ## 🤔 TO THINK ABOUT
