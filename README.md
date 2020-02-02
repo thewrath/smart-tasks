@@ -1,5 +1,5 @@
 ![alt text](https://github.com/thewrath/smart-tasks/blob/master/bin/logo.png)
-
+[![Build Status](https://travis-ci.org/thewrath/smart-tasks.svg?branch=master)](https://travis-ci.org/thewrath/smart-tasks)
 # Smart-tasks
 
   smart-tasks is a very simple task manager (container and scheduler) for NodeJS which can be configured with a configuration file.
