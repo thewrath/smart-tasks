@@ -5,7 +5,7 @@
   "main": "./lib/SchedulerBuilder.js",
   "scripts": {
     "test": "jest",
-    "coveralls": "jest --coverage && cat ./tests/coverage/lcov.info | coveralls",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "check": "No linter"
   },
   "author": "thewrath",
