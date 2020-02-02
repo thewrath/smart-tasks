@@ -25,6 +25,7 @@ $ npm test
   * Setting up tasks with a configuration file,
   * Launch periodic tasks  (define with frequency)
   * single run frequency based task (non-periodic)
+  * single run time based task (non-periodic)
 
 ## ⚙️ TODO
   * Launch time based tasks (periodic)
