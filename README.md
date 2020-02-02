@@ -27,7 +27,6 @@ $ npm test
   * single run frequency based task (non-periodic)
 
 ## ⚙️ TODO
-  * single run time based task (non-periodic)
   * Launch time based tasks (periodic)
   * Move to TypeScript  
   * Add an ID to task (for serialization ...)

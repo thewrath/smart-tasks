@@ -83,3 +83,34 @@ test('Single run task', () => {
 
     expect(taskContainer.getTasks()[taskName]).toBeUndefined();
 });
+
+
+test('Run date based task', () => {
+    let taskContainer = st.ContainerBuilder.create();
+    let taskNow = new TestTask(schedulerIntervalFake);
+    let taskNowName = "test_task_now";
+    taskNow.frequency = undefined;
+    taskNow.date = Date.now();
+    taskNow.singleRun = true;
+    taskContainer.register(taskNowName, taskNow);
+    expect(taskContainer.get(taskNowName)).toBeInstanceOf(TestTask);
+    expect(taskContainer.getTasks()[taskNowName]).toBeInstanceOf(TestTask);
+    
+    let taskLate = new TestTask(schedulerIntervalFake);
+    let taskLateName = "test_task_late";
+    taskLate.frequency = undefined;
+    taskLate.date = (new Date()).setFullYear((new Date()).getFullYear() + 1);
+    taskLate.singleRun = true;
+    taskContainer.register(taskLateName, taskLate);
+    expect(taskContainer.get(taskLateName)).toBeInstanceOf(TestTask);
+    expect(taskContainer.getTasks()[taskLateName]).toBeInstanceOf(TestTask);
+    
+    let scheduler = new st.Scheduler(taskContainer);
+    scheduler.init();
+    scheduler.run(1);
+    jest.runOnlyPendingTimers();
+    expect(schedulerIntervalFake).toBeCalled();
+
+    expect(taskContainer.getTasks()[taskNowName]).toBeUndefined();
+    expect(taskContainer.getTasks()[taskLateName]).toBeDefined();
+});
