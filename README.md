@@ -1,6 +1,8 @@
 ![alt text](https://github.com/thewrath/smart-tasks/blob/master/bin/logo.png)
+
 [![Build Status](https://travis-ci.org/thewrath/smart-tasks.svg?branch=master)](https://travis-ci.org/thewrath/smart-tasks)
-# Smart-tasks
+[![DeepScan grade](https://deepscan.io/api/teams/7258/projects/9387/branches/121534/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7258&pid=9387&bid=121534)
+# Overview
 
   smart-tasks is a very simple task manager (container and scheduler) for NodeJS which can be configured with a configuration file.
   The base code comes from the following project : (https://github.com/arkerone/smart-container)
