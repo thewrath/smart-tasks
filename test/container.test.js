@@ -28,3 +28,19 @@ test('Construct arguments of TaskDefinition', () => {
     expect(container.constructArguments(taskDefinition.constructorArgs)[0]).toBe('test');
     expect(container.constructArguments(taskDefinition.constructorArgs)[1]).toBeInstanceOf(TestTask);
 });
+
+test('Container custom argument', () => {
+    let container = st.ContainerBuilder.create();
+    container.addProperty('test', true);
+    expect(container.hasProperty('test')).toBe(true);
+    expect(container.getProperty('test')).toBe(true);
+});
+
+test('Task definition custom construction', () => {
+    let taskDefinition = new st.TaskDefinition('test', null, false, 10, false);
+    taskDefinition.addArgument('test');
+    expect(taskDefinition.constructorArgs).toContain('test');
+    taskDefinition.addMethodCall('test', []);
+    console.log(taskDefinition.methodCalls);
+    expect(taskDefinition.methodCalls[0]).toStrictEqual({"args": [], "method": "test"})
+});
