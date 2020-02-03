@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/thewrath/smart-tasks.svg?branch=master)](https://travis-ci.org/thewrath/smart-tasks)
 [![DeepScan grade](https://deepscan.io/api/teams/7258/projects/9387/branches/121534/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=7258&pid=9387&bid=121534)
-[![Coverage Status](https://coveralls.io/repos/github/thewrath/smart-tasks/badge.svg?branch=master)](https://coveralls.io/github/thewrath/smart-tasks?branch=master)
+[![Coverage Status](https://s3.amazonaws.com/assets.coveralls.io/badges/coveralls_83.svg?branch=master&service=github)](https://coveralls.io/github/thewrath/smart-tasks?branch=master)
 
 # Overview
 
