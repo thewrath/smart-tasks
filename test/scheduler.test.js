@@ -114,3 +114,26 @@ test('Run date based task', () => {
     expect(taskContainer.getTasks()[taskNowName]).toBeUndefined();
     expect(taskContainer.getTasks()[taskLateName]).toBeDefined();
 });
+
+test('Good error reporting', () => {
+    expect(() => {
+        new st.Scheduler(null);
+    }).toThrow(new TypeError('TaskContainer need to be instance of TaskContainer'));
+
+    let taskContainer = st.ContainerBuilder.create();
+    
+    let scheduler = new st.Scheduler(taskContainer);
+    scheduler.init();
+    scheduler.run(1, () => {
+        throw new Error('');
+    });
+    expect(() => {
+        jest.runOnlyPendingTimers();
+    }).toThrow(new Error("Error in custom scheduler's callback"));
+   
+    expect(schedulerIntervalFake).toBeCalled();
+
+    const errorMessage = 'test'; 
+    const taskError = new st.TaskError(errorMessage, new TestTask);
+    expect(taskError.message).toBe(`${errorMessage}, see : ${TestTask.name}`);
+});

@@ -35,6 +35,8 @@ $ npm test
   * Add an ID to task (for serialization ...)
   * Add Storage integration to store task on disk and restore it
   
+## TO FIX 
+  * Service injection in task instead of task injection (see : Construct arguments of TaskDefinition of test container.test.js)
 
 ## 🤔 TO THINK ABOUT
   * Turn task into promise based object and relaunch it only if the previous one is resolve.
