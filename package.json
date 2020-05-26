@@ -2,7 +2,7 @@
   "name": "smart-tasks",
   "version": "0.6.0",
   "description": "smart-tasks is a task manager for NodeJS which can be configured with a configuration file. The base code comes from the following project : (https://github.com/arkerone/smart-container)",
-  "main": "./lib/SchedulerBuilder.js",
+  "main": "./lib/ContainerBuilder.js",
   "scripts": {
     "test": "jest",
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
